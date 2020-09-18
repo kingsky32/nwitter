@@ -8,7 +8,7 @@ import Navigation from "./Navigation";
 export default ({ isLoggedIn, userObject }) => {
   return (
     <Router>
-      {isLoggedIn && <Navigation />}
+      {isLoggedIn && <Navigation userObject={userObject} />}
       <Switch>
         {isLoggedIn ? 
           <>
