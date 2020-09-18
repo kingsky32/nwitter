@@ -15,15 +15,20 @@ const Home = ({ userObject }) => {
   }, []);
   const onSubmit = async e => {
     e.preventDefault();
-    const fileRef = storageService.ref().child(`${userObject.uid}/${uuidv4()}`);
-    const response = await fileRef.putString(attachment, "data_url");
-    console.log(response);
-    // await dbService.collection("nweets").add({
-    //   text: nweet,
-    //   createdAt: Date.now(),
-    //   creatorId: userObject.uid
-    // });
-    // setNweet("");
+    let attachmentUrl = "";
+    if (attachment !== "") {
+      const attachmentRef = storageService.ref().child(`${userObject.uid}/${uuidv4()}`);
+      const response = await attachmentRef.putString(attachment, "data_url");
+      attachmentUrl = await response.ref.getDownloadURL();
+    }
+    const nweetObject = {
+      text: nweet,
+      createdAt: Date.now(),
+      creatorId: userObject.uid,
+      attachmentUrl
+    };
+    await dbService.collection("nweets").add(nweetObject);
+    setNweet("");
   };
   const onChange = e => {
     const { target: { value } } = e;
