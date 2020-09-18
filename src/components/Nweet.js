@@ -6,7 +6,6 @@ const Nweet = ({ nweetObject, isOwner }) => {
   const [newNweet, setNewNweet] = useState(nweetObject.text);
   const onDeleteClick = async () => {
     const ok = window.confirm("Are you sure you want to delete this nweet ?");
-    console.log(ok);
     if (ok) {
       await dbService.doc(`nweets/${nweetObject.id}`).delete();
     }
