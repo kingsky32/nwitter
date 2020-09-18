@@ -19,7 +19,6 @@ const App = () => {
   }, []);
   return <>
     {init ? <AppRouter isLoggedIn={isLoggedIn} userObject={userObject} /> : "Initializing..." }
-    <footer>&copy; {new Date().getFullYear()} Nwitter</footer>
   </>;
 };
 
