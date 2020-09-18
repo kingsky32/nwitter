@@ -5,7 +5,7 @@ import Auth from "../routes/Auth";
 import Home from "../routes/Home";
 import Navigation from "./Navigation";
 
-export default ({ isLoggedIn, userObject }) => {
+export default ({ isLoggedIn, userObject, refreshUser }) => {
   return (
     <Router>
       {isLoggedIn && <Navigation userObject={userObject} />}
@@ -16,7 +16,7 @@ export default ({ isLoggedIn, userObject }) => {
               <Home userObject={userObject} />
             </Route>
             <Route exact path="/profile">
-              <Profile userObject={userObject} />
+              <Profile userObject={userObject} refreshUser={refreshUser} />
             </Route>
           </> :
           <>
