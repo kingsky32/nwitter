@@ -14,16 +14,14 @@ const Auth = () => {
       setPassword(value);
     }
   };
-  const onSubmit = async e => {
+  const onSubmit = e => {
     e.preventDefault();
-    let data;
     try {
       if (newAccount) {
-        data = await authService.createUserWithEmailAndPassword(email, password);
+        authService.createUserWithEmailAndPassword(email, password);
       } else {
-        data = await authService.signInWithEmailAndPassword(email, password);
+        authService.signInWithEmailAndPassword(email, password);
       }
-      console.log(data);
     } catch (err) {
       setError(err.message);
     }
