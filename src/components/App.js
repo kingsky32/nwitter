@@ -1,33 +1,56 @@
-import { authService } from "fBase";
 import React, { useEffect, useState } from "react";
-import AppRouter from "../components/Router";
+import { authService } from "fBase";
+import styled, { ThemeProvider } from "styled-components";
+import Theme from "Styles/Theme";
+import AppRouter from "./Router";
+import GlobalStyles from "Styles/GlobalStyles";
+
+const Wrapper = styled.div`
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+`;
 
 const App = () => {
   const [init, setInit] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userObject, setUserObject] = useState(null);
   useEffect(() => {
     authService.onAuthStateChanged(user => {
-      if (user){
-        setIsLoggedIn(true);
+      if (user) {
         setUserObject({
           displayName: user.displayName,
           uid: user.uid,
-          updateProfile: args =>  user.updateProfile(args)
+          updateProfile: args => user.updateProfile(args)
         });
       } else {
-        setIsLoggedIn(false);
+        setUserObject(null);
       }
       setInit(true);
     });
   }, []);
   const refreshUser = () => {
-    setUserObject(authService.currentUser);
-  }
-  return <>
-    {init ? <AppRouter refreshUser={refreshUser} isLoggedIn={isLoggedIn} userObject={userObject} /> : "Initializing..." }
-  </>;
+    const user = authService.currentUser;
+    userObject({
+      displayName: user.displayName,
+      uid: user.uid,
+      updateProfile: args => user.updateProfile(args)
+    });
+  };
+  return (
+    <ThemeProvider theme={Theme}>
+      <GlobalStyles />
+      <Wrapper>
+        {init
+          ? <AppRouter
+              refreshUser={refreshUser}
+              isLoggedIn={Boolean(userObject)}
+              userObject={userObject}
+            />
+          : "Initializing..."}
+      </Wrapper>
+    </ThemeProvider>
+  );
 };
 
 export default App;
- 
