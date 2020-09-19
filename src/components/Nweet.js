@@ -44,7 +44,7 @@ const Input = styled.input`
   }
 `;
 
-const Submit = styled.input`
+const Submit = styled.button`
   background-color: ${props => props.theme.blueColor};
   padding: .8rem 2rem;
   border-radius: 8rem;
@@ -90,7 +90,7 @@ const Nweet = ({ nweetObject, isOwner }) => {
       <form onSubmit={onSubmit}>
         <Input value={newNweet} onChange={onChange} placeholder="Edit your nweet" required />
         <ButtonContainer>
-          <Submit type="submit" value="Update Nweet" />
+          <Submit type="submit">Update Nweet</Submit>
           <BorderButton onClick={toggleEditing}>Cancel</BorderButton>
         </ButtonContainer>
       </form> :

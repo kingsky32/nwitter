@@ -72,7 +72,7 @@ const FileSelectorInput = styled.input`
   }
 `;
 
-const Submit = styled.input`
+const Submit = styled.button`
   background-color: ${props => props.theme.blueColor};
   padding: .8rem 2rem;
   border-radius: 8rem;
@@ -137,7 +137,7 @@ const NweetFactory = ({ userObject }) => {
         <FontAwesomeIcon icon={faPhotoVideo} size="2x" />
         <FileSelectorInput type="file" accept="image/*" onChange={onFileChange} />
       </FileSelector>
-      <Submit type="submit" value="Nweet" />
+      <Submit type="submit">Nweet</Submit>
     </Form>
   );
 };

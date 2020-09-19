@@ -15,9 +15,10 @@ const Form = styled.form`
   flex-flow: column nowrap;
 `;
 
-const Submit = styled.input`
+const Submit = styled.button`
   color: ${props => props.theme.whiteColor};
   background-color: ${props => props.theme.blueColor};
+  font-size: 1.6rem;
   height: 4.6rem;
   border-radius: 4.6rem;
   margin: .9rem;
@@ -27,6 +28,7 @@ const AccountButton = styled.span`
   color: ${props => props.theme.blueColor};
   font-size: 1.4rem;
   margin-top: 1.8rem;
+  cursor: pointer;
 `;
 
 const AuthForm = () => {
@@ -66,7 +68,9 @@ const AuthForm = () => {
           onChange={onChange}
           label="Password"
         />
-        <Submit type="submit" value={newAccount ? "Create Account" : "Log in"} />
+        <Submit type="submit">
+          {newAccount ? "Create Account" : "Log in"}
+        </Submit>
         {error}
       </Form>
       <AccountButton onClick={toggleAccount}>

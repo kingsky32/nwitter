@@ -11,16 +11,18 @@ const Wrapper = styled.div`
 
 const ButtonContainer = styled.div`margin: .9rem;`;
 
-const Submit = styled.input`
+const Submit = styled.button`
   width: 100%;
   color: ${props => props.theme.whiteColor};
   background-color: ${props => props.theme.blueColor};
+  font-size: 1.6rem;
   height: 4.6rem;
   border-radius: 4.6rem;
 `;
 
 const LogOut = styled.button`
   width: 100%;
+  font-size: 1.4rem;
   color: ${props => props.theme.blueColor};
 `;
 
@@ -54,7 +56,7 @@ export default ({ userObject, refreshUser }) => {
           label="New display name"
         />
         <ButtonContainer>
-          <Submit type="submit" value="Update Profile" />
+          <Submit type="submit">Update Profile</Submit>
         </ButtonContainer>
       </form>
       <ButtonContainer>
