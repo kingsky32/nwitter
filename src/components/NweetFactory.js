@@ -101,6 +101,7 @@ const NweetFactory = ({ userObject }) => {
     };
     await dbService.collection("nweets").add(nweetObject);
     setNweet("");
+    setAttachment("");
   };
   const onChange = e => {
     const { target: { value } } = e;
